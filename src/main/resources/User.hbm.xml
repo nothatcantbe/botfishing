@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping
+   PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="org.catdragon.botfisher.hibernate.pojo.User" table="user">
+        <id name="id" column="user_id" type="long">
+            <generator class="increment" />
+        </id>
+        <property name="createdAt" column="created_at" type="timestamp" not-null="true" >
+           <meta attribute="default-value">new Date()</meta>
+        </property>
+        <property name="updatedAt" column="updated_at" type="timestamp" not-null="true" />
+        <property name="cursor" column="cursor" type="long" not-null="true" >
+            <meta attribute="default-value">-1l</meta>
+        </property>
+        <property name="iter" column="iter" type="int" not-null="true" >
+            <meta attribute="default-value">0</meta>
+        </property>
+
+
+        <property name="twitterId" column="twitter_id" type="long" unique="true" />
+        <property name="twitterScreenName" column="twitter_screen_name" type="string" unique="true" />
+        <property name="twitterName" column="twitter_name" type="string" />
+        <property name="twitterLocation" column="twitter_location" type="string" />
+        <property name="twitterUrl" column="twitter_url" type="string" />
+        <property name="twitterDescription" column="twitter_description" type="string" />
+        <property name="twitterProtected" column="twitter_protected" type="boolean" />
+        <property name="twitterVerified" column="twitter_verified" type="boolean" />
+        <property name="twitterFollowersCount" column="twitter_followers_count" type="int" />
+        <property name="twitterFriendsCount" column="twitter_friends_count" type="int" />
+        <property name="twitterListedCount" column="twitter_listed_count" type="int" />
+        <property name="twitterFavouritesCount" column="twitter_favourites_count" type="int" />
+        <property name="twitterStatusesCount" column="twitter_statuses_count" type="int" />
+        <property name="twitterCreatedAt" column="twitter_created_at" type="timestamp" />
+        <property name="twitterUtcOffset" column="twitter_utc_offset" type="int" />
+        <property name="twitterTimeZone" column="twitter_time_zone" type="string" />
+        <property name="twitterGeoEnabled" column="twitter_geo_enabled" type="boolean" />
+        <property name="twitterLang" column="twitter_lang" type="string" />
+        <property name="twitterContributersEnabled" column="twitter_contributors_enabled" type="boolean" />
+        <property name="twitterProfileBackgroundColor" column="twitter_profile_background_color" type="String" />
+        <property name="twitterProfileBackgroundImageUrl" column="twitter_profile_background_image_url" type="String" />
+        <property name="twitterProfileBackgroundImageUrlHttps" column="twitter_profile_background_image_url_https" type="String" />
+        <property name="twitterProfileBackgroundTile" column="twitter_profile_background_tile" type="boolean" />
+        <property name="twitterProfileImageUrl" column="twitter_profile_image_url" type="String" />
+        <property name="twitterProfileImageUrlHttps" column="twitter_profile_image_url_https" type="String" />
+        <property name="twitterProfileLinkColor" column="twitter_profile_link_color" type="String" />
+        <property name="twitterProfileSidebarBorderColor" column="twitter_profile_sidebar_border_color" type="String" />
+        <property name="twitterProfileSidebarFillColor" column="twitter_profile_sidebar_fill_color" type="String" />
+        <property name="twitterProfileTextColor" column="twitter_profile_text_color" type="String" />
+        <property name="twitterProfileUseBackgroundImage" column="twitter_profile_use_background_image" type="boolean" />
+        <property name="twitterDefaultProfile" column="twitter_default_profile" type="boolean" />
+        <property name="twitterDefaultProfileImage" column="twitter_default_profile_image" type="boolean" />
+
+        <set name="twitterWithheldInCountries" lazy="false" table="user_withheld_countries">
+            <key column="user_id"/>
+            <many-to-many column="withheld_country_id" class="org.catdragon.botfisher.hibernate.pojo.WithheldCountry"/>
+        </set>
+    </class>
+
+</hibernate-mapping>

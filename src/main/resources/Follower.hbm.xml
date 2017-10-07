@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping
+   PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="org.catdragon.botfisher.hibernate.pojo.Follower" table="follower">
+        <id name="id" column="follower_id" type="long">
+            <generator class="increment" />
+        </id>
+        <property name="createdAt" column="created_at" type="timestamp" not-null="true" >
+           <meta attribute="default-value">new Date()</meta>
+        </property>
+        <property name="updatedAt" column="updated_at" type="timestamp" not-null="true" />
+        <many-to-one name="followee" class="org.catdragon.botfisher.hibernate.pojo.User" column="followee" not-null="true" />
+        <many-to-one name="follower" class="org.catdragon.botfisher.hibernate.pojo.User" column="follower" not-null="true" />
+        <property name="active" column="active" type="boolean">
+           <meta attribute="default-value">true</meta>
+        </property>
+    </class>
+
+</hibernate-mapping>

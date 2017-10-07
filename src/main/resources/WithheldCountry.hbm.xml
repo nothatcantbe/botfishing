@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping
+   PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="org.catdragon.botfisher.hibernate.pojo.WithheldCountry" table="withheld_country">
+        <id name="id" column="withheld_country_id" type="int">
+            <generator class="increment" />
+        </id>
+        <property name="countryCode" column="country_code" type="string" unique="true" >
+            <meta attribute="use-in-tostring">true</meta>
+            <meta attribute="use-in-equals">true</meta>
+        </property>
+    </class>
+
+</hibernate-mapping>
